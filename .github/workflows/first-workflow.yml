@@ -1,0 +1,25 @@
+name: First Workflow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  GREETING: "Hello from my first GitHub Actions workflow!"
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Print greeting
+        run: echo "$GREETING"
+
+      - name: Print context variables
+        run: |
+          echo "Repo: ${{ github.repository }}"
+          echo "Triggered by: ${{ github.actor }}"
+          echo "Branch: ${{ github.ref_name }}"
